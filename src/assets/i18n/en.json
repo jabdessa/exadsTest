@@ -1,0 +1,29 @@
+{
+    "buttons": {
+        "newUser": "New User",
+        "addNewUser": "ADD NEW USER",
+        "cancel": "CANCEL"
+    },
+    "users": {
+        "table": {
+            "username": "Username",
+            "fullName": "Full Name",
+            "email": "Email",
+            "status": "Status",
+            "createdDate": "Date Created",
+            "rows": "rows",
+            "showing": "Showing",
+            "entries": "Entries"
+        },
+        "form": {
+            "newUser": "Add New User",
+            "username": "Username",
+            "first_name": "First Name",
+            "last_name": "Last Name (Optional)",
+            "email": "Email"
+        }
+    },
+    "errors": {
+        "minlength": "Invalid value '{{value}}'. {{field}} has less than ({{length}}) characters."
+    }
+}

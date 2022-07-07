@@ -1,0 +1,29 @@
+{
+    "buttons": {
+        "newUser": "Nuevo Usuario",
+        "addNewUser": "AÑADIR USUARIO NUEVO",
+        "cancel": "CANCELAR"
+    },
+    "users": {
+        "table": {
+            "username": "Usuario",
+            "fullName": "Nombre Completo",
+            "email": "Email",
+            "status": "Estado",
+            "createdDate": "Fecha de creación",
+            "rows": "filas",
+            "showing": "Mostrando",
+            "entries": "Entidades"
+        },
+        "form": {
+            "newUser": "Añadir Nuevo Usuario",
+            "username": "Usuario",
+            "first_name": "Nombre",
+            "last_name": "Apellidos (Opcional)",
+            "email": "Email"
+        }
+    },
+    "errors": {
+        "minlength": "Invalid value '{{value}}'. {{field}} has less than ({{length}}) characters."
+    }
+}

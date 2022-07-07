@@ -1,0 +1,14 @@
+.full-width {
+  width: 100%;
+}
+
+.userForm {
+  border: solid 1px;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button:disabled {
+  cursor: not-allowed !important;
+  pointer-events: all;
+}

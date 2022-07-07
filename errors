@@ -1,0 +1,3 @@
+
+// this version has a problem with column names with underscore
+    "@swimlane/ngx-datatable": "^15.0.2",

@@ -1,0 +1,75 @@
+<div *ngIf="loading else content" fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
+  <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+</div>
+<ng-template #content>
+  <div class="container">
+    <div class="row">
+      <div class="col-6 text-start">
+        <a href="users/create">
+          <button mat-button class="btn btn-primary btn-sm"> {{ "buttons.newUser" | translate}}</button>
+        </a>
+      </div>
+      <div class="col-6 text-end">
+        <mat-form-field appearance="fill">
+          <mat-select [(ngModel)]="page.limit" (selectionChange)="changeAmount()">
+            <mat-option *ngFor="let option of mat_options" value="{{option.value}}">{{option.label}}</mat-option>
+          </mat-select>
+        </mat-form-field> {{ "users.table.rows" | translate}}
+      </div>
+    </div>
+    <!-- USER TABLE -->
+    <div class="row">
+      <ngx-datatable class="material" [rows]="users" [columnMode]="columnMode" [headerHeight]="50" [footerHeight]="60"
+        rowHeight="auto" [externalPaging]="true" [count]="page.count" [offset]="page.offset" [limit]="limit"
+        (page)="getUsersByPagebtn($event)" #usersTable>
+        <ngx-datatable-column name="{{'users.table.username' | translate}}" prop="username">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.username }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'users.table.fullName' | translate}}" prop="fullName">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.fullName }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'users.table.email' | translate}}" prop="email">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.email }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'users.table.status' | translate}}" prop="status">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <span [class]="row.statusClass"> {{row.status }} </span>
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{'users.table.createdDate' | translate}}" prop="created_date">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{row.created_date | date :'yyyy-MM-dd'}}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <!-- FOOTER-->
+        <ngx-datatable-footer>
+          <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-pageSize="pageSize"
+            let-curPage="curPage" let-offset="offset">
+            <div style="padding: 5px 10px">
+              <div>
+                {{'users.table.showing' | translate}} {{(pageSize  *curPage)-pageSize +1}} - {{pageSize  *curPage}}
+                /{{rowCount}} {{'users.table.entries' | translate}}
+              </div>
+            </div>
+            <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'" [pagerRightArrowIcon]="'datatable-icon-right'"
+              [pagerPreviousIcon]="'datatable-icon-prev'" [pagerNextIcon]="'datatable-icon-skip'" [page]="curPage"
+              [size]="pageSize" [count]="rowCount" [hidden]="!((rowCount / pageSize) > 1)"
+              (change)="usersTable.onFooterPage($event)">
+            </datatable-pager>
+          </ng-template>
+        </ngx-datatable-footer>
+      </ngx-datatable>
+    </div>
+  </div>
+</ng-template>

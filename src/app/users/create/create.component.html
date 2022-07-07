@@ -1,0 +1,51 @@
+<div *ngIf="loading else contentCreate" fxLayout="row" fxLayoutAlign="space-around center" style="height:100%">
+  <mat-spinner diameter="50" strokeWidth="5"></mat-spinner>
+</div>
+<ng-template #contentCreate>
+  <div class="container">
+    <h4>{{ "users.form.newUser" | translate}}</h4>
+    <form class="userForm" [formGroup]="formUser" (ngSubmit)="createUser()">
+      <div class="row">
+        <!-- USERNAME -->
+        <div class="col-12">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{'users.form.username' | translate}} *" formControlName="username"
+              (keyup)="userNameExists()">
+            <mat-error *ngIf="hasErrors('username')">{{getUserNameError()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- FIRST_NAME -->
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{'users.form.first_name' | translate}} *" formControlName="first_name">
+            <mat-error *ngIf="hasErrors('first_name')">{{getError('first_name')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <!-- LAST_NAME -->
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{'users.form.last_name' | translate}}" formControlName="last_name">
+          </mat-form-field>
+        </div>
+        <!-- EMAIL -->
+        <div class="col-12">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="{{'users.form.email' | translate}} *" formControlName="email">
+            <mat-error *ngIf="hasErrors('email')">Insert a valid email</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- BUTTONS -->
+      <div class="row">
+        <div class="col-6 text-start">
+          <button type="button" class="btn btn-secondary btn-sm" mat-button
+            (click)="cancel()">{{ "buttons.cancel" | translate}}</button>
+        </div>
+        <div class="col-6 text-end">
+          <button type="submit" class="btn btn btn-success btn-sm"
+            [disabled]="!formUser.valid">{{ "buttons.addNewUser" | translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</ng-template>
